@@ -1,0 +1,19 @@
+---
+all:
+  children:
+    application:
+    database:
+    loadbalancer:
+
+application:
+  hosts:
+    app1:
+    app2:
+
+database:
+  hosts:
+    db:
+
+loadbalancer:
+  hosts:
+    lb:

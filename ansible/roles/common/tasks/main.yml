@@ -1,0 +1,8 @@
+---
+- name: Print os-release
+  shell: cat /etc/os-release
+  register: shell_result
+
+- name: Print shell result
+  debug:
+    var: shell_result.stdout_lines

@@ -1,0 +1,121 @@
+2023-09-12 05:37:48,996 p=203594 u=amin n=ansible | [WARNING]: Found both group and host with same name: db
+
+2023-09-12 05:37:48,996 p=203594 u=amin n=ansible | [WARNING]: Found both group and host with same name: lb
+
+2023-09-12 05:37:49,131 p=203594 u=amin n=ansible | PLAY [all] *****************************************************************************************************
+2023-09-12 05:37:49,138 p=203594 u=amin n=ansible | TASK [Gathering Facts] *****************************************************************************************
+2023-09-12 05:37:55,179 p=203594 u=amin n=ansible |  [ERROR]: User interrupted execution
+
+2023-09-12 05:40:28,355 p=204278 u=amin n=ansible | PLAY [all] *****************************************************************************************************
+2023-09-12 05:40:28,359 p=204278 u=amin n=ansible | TASK [Gathering Facts] *****************************************************************************************
+2023-09-12 05:40:29,692 p=204278 u=amin n=ansible | ok: [app2]
+2023-09-12 05:40:29,694 p=204278 u=amin n=ansible | ok: [db]
+2023-09-12 05:40:29,705 p=204278 u=amin n=ansible | ok: [lb]
+2023-09-12 05:40:29,725 p=204278 u=amin n=ansible | ok: [app1]
+2023-09-12 05:40:29,747 p=204278 u=amin n=ansible | TASK [common : Print os-release] *******************************************************************************
+2023-09-12 05:40:29,985 p=204278 u=amin n=ansible | changed: [app1]
+2023-09-12 05:40:29,986 p=204278 u=amin n=ansible | changed: [app2]
+2023-09-12 05:40:30,017 p=204278 u=amin n=ansible | changed: [db]
+2023-09-12 05:40:30,027 p=204278 u=amin n=ansible | changed: [lb]
+2023-09-12 05:40:30,071 p=204278 u=amin n=ansible | PLAY RECAP *****************************************************************************************************
+2023-09-12 05:40:30,071 p=204278 u=amin n=ansible | app1                       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2023-09-12 05:40:30,071 p=204278 u=amin n=ansible | app2                       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2023-09-12 05:40:30,071 p=204278 u=amin n=ansible | db                         : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2023-09-12 05:40:30,071 p=204278 u=amin n=ansible | lb                         : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2023-09-12 05:40:36,330 p=204477 u=amin n=ansible | PLAY [all] *****************************************************************************************************
+2023-09-12 05:40:36,334 p=204477 u=amin n=ansible | TASK [Gathering Facts] *****************************************************************************************
+2023-09-12 05:40:37,090 p=204477 u=amin n=ansible | ok: [db]
+2023-09-12 05:40:37,109 p=204477 u=amin n=ansible | ok: [lb]
+2023-09-12 05:40:37,161 p=204477 u=amin n=ansible | ok: [app2]
+2023-09-12 05:40:37,167 p=204477 u=amin n=ansible | ok: [app1]
+2023-09-12 05:40:37,188 p=204477 u=amin n=ansible | TASK [common : Print os-release] *******************************************************************************
+2023-09-12 05:40:37,433 p=204477 u=amin n=ansible | changed: [app2]
+2023-09-12 05:40:37,437 p=204477 u=amin n=ansible | changed: [app1]
+2023-09-12 05:40:37,474 p=204477 u=amin n=ansible | changed: [db]
+2023-09-12 05:40:37,474 p=204477 u=amin n=ansible | changed: [lb]
+2023-09-12 05:40:37,518 p=204477 u=amin n=ansible | PLAY RECAP *****************************************************************************************************
+2023-09-12 05:40:37,518 p=204477 u=amin n=ansible | app1                       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2023-09-12 05:40:37,518 p=204477 u=amin n=ansible | app2                       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2023-09-12 05:40:37,518 p=204477 u=amin n=ansible | db                         : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2023-09-12 05:40:37,518 p=204477 u=amin n=ansible | lb                         : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2023-09-12 05:42:06,972 p=205098 u=amin n=ansible | PLAY [all] *****************************************************************************************************
+2023-09-12 05:42:06,976 p=205098 u=amin n=ansible | TASK [Gathering Facts] *****************************************************************************************
+2023-09-12 05:42:08,165 p=205098 u=amin n=ansible | ok: [lb]
+2023-09-12 05:42:08,207 p=205098 u=amin n=ansible | ok: [db]
+2023-09-12 05:42:08,246 p=205098 u=amin n=ansible | ok: [app1]
+2023-09-12 05:42:08,260 p=205098 u=amin n=ansible | ok: [app2]
+2023-09-12 05:42:08,285 p=205098 u=amin n=ansible | TASK [common : Print os-release] *******************************************************************************
+2023-09-12 05:42:08,523 p=205098 u=amin n=ansible | changed: [lb]
+2023-09-12 05:42:08,527 p=205098 u=amin n=ansible | changed: [app2]
+2023-09-12 05:42:08,557 p=205098 u=amin n=ansible | changed: [app1]
+2023-09-12 05:42:08,567 p=205098 u=amin n=ansible | changed: [db]
+2023-09-12 05:42:08,578 p=205098 u=amin n=ansible | TASK [common : Print shell result] *****************************************************************************
+2023-09-12 05:42:08,592 p=205098 u=amin n=ansible | ok: [app1] => {
+    "shell_result.stdout_lines": [
+        "NAME=\"Ubuntu\"",
+        "VERSION=\"18.04.3 LTS (Bionic Beaver)\"",
+        "ID=ubuntu",
+        "ID_LIKE=debian",
+        "PRETTY_NAME=\"Ubuntu 18.04.3 LTS\"",
+        "VERSION_ID=\"18.04\"",
+        "HOME_URL=\"https://www.ubuntu.com/\"",
+        "SUPPORT_URL=\"https://help.ubuntu.com/\"",
+        "BUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"",
+        "PRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"",
+        "VERSION_CODENAME=bionic",
+        "UBUNTU_CODENAME=bionic"
+    ]
+}
+2023-09-12 05:42:08,600 p=205098 u=amin n=ansible | ok: [app2] => {
+    "shell_result.stdout_lines": [
+        "NAME=\"Ubuntu\"",
+        "VERSION=\"18.04.3 LTS (Bionic Beaver)\"",
+        "ID=ubuntu",
+        "ID_LIKE=debian",
+        "PRETTY_NAME=\"Ubuntu 18.04.3 LTS\"",
+        "VERSION_ID=\"18.04\"",
+        "HOME_URL=\"https://www.ubuntu.com/\"",
+        "SUPPORT_URL=\"https://help.ubuntu.com/\"",
+        "BUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"",
+        "PRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"",
+        "VERSION_CODENAME=bionic",
+        "UBUNTU_CODENAME=bionic"
+    ]
+}
+2023-09-12 05:42:08,601 p=205098 u=amin n=ansible | ok: [db] => {
+    "shell_result.stdout_lines": [
+        "NAME=\"Ubuntu\"",
+        "VERSION=\"18.04.3 LTS (Bionic Beaver)\"",
+        "ID=ubuntu",
+        "ID_LIKE=debian",
+        "PRETTY_NAME=\"Ubuntu 18.04.3 LTS\"",
+        "VERSION_ID=\"18.04\"",
+        "HOME_URL=\"https://www.ubuntu.com/\"",
+        "SUPPORT_URL=\"https://help.ubuntu.com/\"",
+        "BUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"",
+        "PRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"",
+        "VERSION_CODENAME=bionic",
+        "UBUNTU_CODENAME=bionic"
+    ]
+}
+2023-09-12 05:42:08,606 p=205098 u=amin n=ansible | ok: [lb] => {
+    "shell_result.stdout_lines": [
+        "NAME=\"Ubuntu\"",
+        "VERSION=\"18.04.3 LTS (Bionic Beaver)\"",
+        "ID=ubuntu",
+        "ID_LIKE=debian",
+        "PRETTY_NAME=\"Ubuntu 18.04.3 LTS\"",
+        "VERSION_ID=\"18.04\"",
+        "HOME_URL=\"https://www.ubuntu.com/\"",
+        "SUPPORT_URL=\"https://help.ubuntu.com/\"",
+        "BUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"",
+        "PRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"",
+        "VERSION_CODENAME=bionic",
+        "UBUNTU_CODENAME=bionic"
+    ]
+}
+2023-09-12 05:42:08,652 p=205098 u=amin n=ansible | PLAY RECAP *****************************************************************************************************
+2023-09-12 05:42:08,652 p=205098 u=amin n=ansible | app1                       : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2023-09-12 05:42:08,652 p=205098 u=amin n=ansible | app2                       : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2023-09-12 05:42:08,652 p=205098 u=amin n=ansible | db                         : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2023-09-12 05:42:08,652 p=205098 u=amin n=ansible | lb                         : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
