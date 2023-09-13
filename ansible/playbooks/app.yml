@@ -1,0 +1,5 @@
+---
+
+- hosts: application
+  roles:
+    - role: app
