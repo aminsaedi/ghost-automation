@@ -20,7 +20,7 @@
 
 - name: "Add NodeJS Deb repository"
   apt_repository:
-    repo: "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_18.x nodistro main"
+    repo: "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_16.x nodistro main"
     state: present
 
 - name: "Install NodeJS"
@@ -29,3 +29,23 @@
     state: present
     update_cache: yes
 
+- name: "Install Ghost Npm modules"
+  community.general.npm:
+    name: "ghost-cli"
+    state: "latest"
+    global: true
+
+
+- name: "Create direcrory for files hosting"
+  file:
+    path: "/var/www/{{ SITE_NAME }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0775'
+
+- name: "Rust Ghost install shell command"
+  become: no
+  shell: "ghost install --no-prompt --url http://localhost:2368 --db mysql --dbhost {{ db_fqdn }} --dbuser root --dbpass Pass123@ --dbname ghost_dev --no-setup-nginx --no-setup-ssl --dbname ghost"
+  args:
+    chdir: "/var/www/{{ SITE_NAME }}"

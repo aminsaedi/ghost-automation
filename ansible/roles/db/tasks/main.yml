@@ -1,0 +1,33 @@
+---
+- name: "Install MariaDB core packages"
+  apt:
+    name: mariadb-server
+    state: present
+    update_cache: yes
+
+
+- name: "Make sure MariaDB is runnign"
+  systemd:
+    state: started
+    enabled: true
+    name: mariadb
+
+- name: check if config file exist
+  stat:
+    path: /root/.my.cnf
+  register: config_file
+
+- name: Generate mysql root pass
+  set_fact:
+    # MARIADB_USER_PASS: "{{ lookup('ansible.builtin.password', '/dev/null chars=ascii_uppercase,ascii_lowercase,digits length=16') }}"
+    MARIADB_ROOT_PASS: "Pass123@"
+  # when: not config_file.stat.exists
+
+
+- name: Update MariaDB root password
+  mysql_user: 
+    name: root 
+    host: "%" 
+    password: "{{ MARIADB_ROOT_PASS }}"
+  notify:
+    restart mariadb

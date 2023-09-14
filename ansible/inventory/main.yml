@@ -8,12 +8,16 @@ all:
 application:
   hosts:
     app1:
+      ansible_host: "{{ app1_fqdn }}"
     app2:
+      ansible_host: "{{ app1_fqdn }}"
 
 database:
   hosts:
     db:
+      ansible_host: "{{ db_fqdn }}"
 
 loadbalancer:
   hosts:
     lb:
+      ansible_host: "{{ lb_fqdn }}"

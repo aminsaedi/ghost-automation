@@ -2,3 +2,4 @@ REQUIRED_PACKGES_BEFORE_INSTALLING_NODEJS:
  - curl
  - ca-certificates
  - gnupg
+SITE_NAME: ghost

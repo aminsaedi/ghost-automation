@@ -1,3 +1,8 @@
 ansible_connection: ssh
 ansible_ssh_user: vagrant
 ansible_ssh_pass: vagrant
+
+app1_fqdn: 172.16.0.20
+app2_fqdn: 172.16.0.30
+db_fqdn: 172.16.0.40
+lb_fqdn: 172.16.0.10
