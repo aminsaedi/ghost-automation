@@ -1,9 +1,11 @@
 ---
-- name: "Install MariaDB core packages"
+- name: "Install required packages"
   apt:
-    name: mariadb-server
+    name: "{{ item }}"
     state: present
     update_cache: yes
+  loop:
+    - "{{ MARIADB_PKGS_LIST }}"
 
 
 - name: "Make sure MariaDB is runnign"
@@ -19,10 +21,21 @@
 
 - name: Generate mysql root pass
   set_fact:
-    # MARIADB_USER_PASS: "{{ lookup('ansible.builtin.password', '/dev/null chars=ascii_uppercase,ascii_lowercase,digits length=16') }}"
-    MARIADB_ROOT_PASS: "Pass123@"
+    MARIADB_ROOT_PASS: "{{ lookup('ansible.builtin.password', '/dev/null chars=ascii_uppercase,ascii_lowercase,digits length=16') }}"
+    # MARIADB_ROOT_PASS: "Pass123@"
+    MARIADB_USER_PASS: "Pass123@"
   # when: not config_file.stat.exists
 
+
+- name: Update mysql server configs
+  template:
+    src: etc/mysql/mariadb.conf.d/50-server.cnf
+    dest: /etc/mysql/mariadb.conf.d/50-server.cnf
+    owner: root
+    group: root
+    mode: '0600'
+  notify:
+    restart mariadb
 
 - name: Update MariaDB root password
   mysql_user: 
@@ -31,3 +44,17 @@
     password: "{{ MARIADB_ROOT_PASS }}"
   notify:
     restart mariadb
+
+- name: Create ghost database
+  mysql_db:
+    name: ghost
+    state: present
+
+- name: Create database user ghost
+  mysql_user:
+    host: "%"
+    name: ghost
+    password: "{{ MARIADB_USER_PASS }}"
+    update_password: on_create
+    priv: "ghost.*:ALL,GRANT"
+    state: present

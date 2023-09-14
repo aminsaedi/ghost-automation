@@ -7,6 +7,12 @@
   loop:
     "{{ REQUIRED_PACKGES_BEFORE_INSTALLING_NODEJS }}"
 
+
+- name: Update all packages
+  apt:
+    name: "*"
+    state: latest
+
 - name: "Create keyring dir"
   file:
     path: /etc/apt/keyrings
@@ -46,6 +52,6 @@
 
 - name: "Rust Ghost install shell command"
   become: no
-  shell: "ghost install --no-prompt --url http://localhost:2368 --db mysql --dbhost {{ db_fqdn }} --dbuser root --dbpass Pass123@ --dbname ghost_dev --no-setup-nginx --no-setup-ssl --dbname ghost"
+  shell: "ghost install --no-prompt --ip 0.0.0.0 --url http://0.0.0.0:2368 --db mysql --dbhost {{ db_fqdn }} --dbuser ghost --dbpass Pass123@ --dbname ghost --no-setup-nginx --no-setup-ssl"
   args:
     chdir: "/var/www/{{ SITE_NAME }}"

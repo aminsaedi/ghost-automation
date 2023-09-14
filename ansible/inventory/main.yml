@@ -9,8 +9,8 @@ application:
   hosts:
     app1:
       ansible_host: "{{ app1_fqdn }}"
-    app2:
-      ansible_host: "{{ app1_fqdn }}"
+    # app2:
+    #   ansible_host: "{{ app2_fqdn }}"
 
 database:
   hosts:

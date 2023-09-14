@@ -92,6 +92,11 @@ expire_logs_days        = 10
 # utf8 4-byte character set. See also client.cnf
 character-set-server  = utf8mb4
 collation-server      = utf8mb4_general_ci
+innodb_file_per_table=ON
+innodb_file_format=Barracuda
+innodb_large_prefix=ON
+# The next setting is optional, it ensures future tables will support indexes of a larger size
+innodb_default_row_format = 'DYNAMIC'
 
 #
 # * InnoDB
