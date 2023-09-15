@@ -6,6 +6,6 @@ NGNIX_PACKAGE_LIST:
   - python3-certbot-nginx
 
 NGNIX_INSTANCES:
-  - domain: "{{ MAIN_DOMAIN }}"
-    email: "me@{{ MAIN_DOMAIN }}"
+  - domain: "{{ root_fqdn }}"
+    email: "me@{{ root_fqdn }}"
     root: /var/www/ghost

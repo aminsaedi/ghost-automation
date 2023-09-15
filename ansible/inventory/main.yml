@@ -8,7 +8,7 @@ all:
 application:
   hosts:
     app1:
-      ansible_host: "{{ app1_fqdn }}"
+      ansible_host: "{{ app_fqdn }}"
     # app2:
     #   ansible_host: "{{ app2_fqdn }}"
 firewall:
