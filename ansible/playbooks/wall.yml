@@ -1,0 +1,6 @@
+---
+
+- hosts: firewall
+  roles:
+    - role: firewall
+

@@ -8,7 +8,7 @@
     - "{{ MARIADB_PKGS_LIST }}"
 
 
-- name: "Make sure MariaDB is runnign"
+- name: "Make sure MariaDB is running"
   systemd:
     state: started
     enabled: true

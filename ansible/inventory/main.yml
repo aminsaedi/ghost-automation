@@ -11,6 +11,10 @@ application:
       ansible_host: "{{ app1_fqdn }}"
     # app2:
     #   ansible_host: "{{ app2_fqdn }}"
+firewall:
+  hosts:
+    wall:
+      ansible_host: "{{ wall_fqdn }}"
 
 database:
   hosts:

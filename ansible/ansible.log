@@ -7118,3 +7118,213 @@ The offending line appears to be:
 2023-09-14 13:26:07,029 p=1704369 u=amin n=ansible | PLAY RECAP *****************************************************************************************************************************************************
 2023-09-14 13:26:07,029 p=1704369 u=amin n=ansible | app1                       : ok=10   changed=6    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 2023-09-14 13:26:07,029 p=1704369 u=amin n=ansible | db                         : ok=10   changed=6    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2023-09-15 04:17:01,280 p=923990 u=amin n=ansible | ERROR! We were unable to read either as JSON nor YAML, these are the errors we got from each:
+JSON: Expecting value: line 1 column 1 (char 0)
+
+Syntax Error while loading YAML.
+  could not determine a constructor for the tag '!ghost_config.exists'
+
+The error appears to be in '/home/amin/w/redmine-cluster-automation/ansible/roles/app/tasks/main.yml': line 57, column 9, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+    mode: '0775'
+  when: !ghost_config.exists
+        ^ here
+
+2023-09-15 04:17:16,014 p=924951 u=amin n=ansible | ERROR! couldn't resolve module/action 'state'. This often indicates a misspelling, missing collection, or incorrect module path.
+
+The error appears to be in '/home/amin/w/redmine-cluster-automation/ansible/roles/app/tasks/main.yml': line 44, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+
+- name: "Check if ghost site is already installed"
+  ^ here
+
+2023-09-15 04:17:31,223 p=925963 u=amin n=ansible | PLAY [application] **************************************************************************************
+2023-09-15 04:17:31,230 p=925963 u=amin n=ansible | TASK [Gathering Facts] **********************************************************************************
+2023-09-15 04:17:32,679 p=925963 u=amin n=ansible | ok: [app1]
+2023-09-15 04:17:32,687 p=925963 u=amin n=ansible | TASK [app : Install required packages for install NodeJS] ***********************************************
+2023-09-15 04:17:33,333 p=925963 u=amin n=ansible | ok: [app1] => (item=curl)
+2023-09-15 04:17:33,806 p=925963 u=amin n=ansible | ok: [app1] => (item=ca-certificates)
+2023-09-15 04:17:34,198 p=925963 u=amin n=ansible | ok: [app1] => (item=gnupg)
+2023-09-15 04:17:34,203 p=925963 u=amin n=ansible | TASK [app : Update all packages] ************************************************************************
+2023-09-15 04:17:35,274 p=925963 u=amin n=ansible | changed: [app1]
+2023-09-15 04:17:35,279 p=925963 u=amin n=ansible | TASK [app : Create keyring dir] *************************************************************************
+2023-09-15 04:17:35,542 p=925963 u=amin n=ansible | ok: [app1]
+2023-09-15 04:17:35,546 p=925963 u=amin n=ansible | TASK [app : Add NodeJS apt signing key] *****************************************************************
+2023-09-15 04:17:36,091 p=925963 u=amin n=ansible | ok: [app1]
+2023-09-15 04:17:36,096 p=925963 u=amin n=ansible | TASK [app : Add NodeJS Deb repository] ******************************************************************
+2023-09-15 04:17:36,479 p=925963 u=amin n=ansible | ok: [app1]
+2023-09-15 04:17:36,484 p=925963 u=amin n=ansible | TASK [app : Install NodeJS] *****************************************************************************
+2023-09-15 04:17:37,069 p=925963 u=amin n=ansible | ok: [app1]
+2023-09-15 04:17:37,074 p=925963 u=amin n=ansible | TASK [app : Install Ghost Npm modules] ******************************************************************
+2023-09-15 04:17:39,199 p=925963 u=amin n=ansible | ok: [app1]
+2023-09-15 04:17:39,204 p=925963 u=amin n=ansible | TASK [app : Check if ghost site is already installed] ***************************************************
+2023-09-15 04:17:39,500 p=925963 u=amin n=ansible | ok: [app1]
+2023-09-15 04:17:39,505 p=925963 u=amin n=ansible | TASK [app : Create direcrory for files hosting] *********************************************************
+2023-09-15 04:17:39,514 p=925963 u=amin n=ansible | fatal: [app1]: FAILED! => {"msg": "The conditional check 'not ghost_config.exists' failed. The error was: error while evaluating conditional (not ghost_config.exists): 'dict object' has no attribute 'exists'. 'dict object' has no attribute 'exists'\n\nThe error appears to be in '/home/amin/w/redmine-cluster-automation/ansible/roles/app/tasks/main.yml': line 50, column 3, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n\n- name: \"Create direcrory for files hosting\"\n  ^ here\n"}
+2023-09-15 04:17:39,514 p=925963 u=amin n=ansible | PLAY RECAP **********************************************************************************************
+2023-09-15 04:17:39,514 p=925963 u=amin n=ansible | app1                       : ok=9    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2023-09-15 04:22:15,654 p=944795 u=amin n=ansible | PLAY [application] **************************************************************************************
+2023-09-15 04:22:15,659 p=944795 u=amin n=ansible | TASK [Gathering Facts] **********************************************************************************
+2023-09-15 04:22:17,013 p=944795 u=amin n=ansible | ok: [app1]
+2023-09-15 04:22:17,022 p=944795 u=amin n=ansible | TASK [app : Install required packages for install NodeJS] ***********************************************
+2023-09-15 04:22:17,549 p=944795 u=amin n=ansible | ok: [app1] => (item=curl)
+2023-09-15 04:22:17,980 p=944795 u=amin n=ansible | ok: [app1] => (item=ca-certificates)
+2023-09-15 04:22:18,395 p=944795 u=amin n=ansible | ok: [app1] => (item=gnupg)
+2023-09-15 04:22:18,401 p=944795 u=amin n=ansible | TASK [app : Update all packages] ************************************************************************
+2023-09-15 04:22:19,452 p=944795 u=amin n=ansible | changed: [app1]
+2023-09-15 04:22:19,457 p=944795 u=amin n=ansible | TASK [app : Create keyring dir] *************************************************************************
+2023-09-15 04:22:19,717 p=944795 u=amin n=ansible | ok: [app1]
+2023-09-15 04:22:19,722 p=944795 u=amin n=ansible | TASK [app : Add NodeJS apt signing key] *****************************************************************
+2023-09-15 04:22:20,338 p=944795 u=amin n=ansible | ok: [app1]
+2023-09-15 04:22:20,341 p=944795 u=amin n=ansible | TASK [app : Add NodeJS Deb repository] ******************************************************************
+2023-09-15 04:22:20,751 p=944795 u=amin n=ansible | ok: [app1]
+2023-09-15 04:22:20,756 p=944795 u=amin n=ansible | TASK [app : Install NodeJS] *****************************************************************************
+2023-09-15 04:22:21,370 p=944795 u=amin n=ansible | ok: [app1]
+2023-09-15 04:22:21,375 p=944795 u=amin n=ansible | TASK [app : Install Ghost Npm modules] ******************************************************************
+2023-09-15 04:22:23,048 p=944795 u=amin n=ansible | ok: [app1]
+2023-09-15 04:22:23,051 p=944795 u=amin n=ansible | TASK [app : Check if ghost site is already installed] ***************************************************
+2023-09-15 04:22:23,317 p=944795 u=amin n=ansible | ok: [app1]
+2023-09-15 04:22:23,321 p=944795 u=amin n=ansible | TASK [app : Create direcrory for files hosting] *********************************************************
+2023-09-15 04:22:23,328 p=944795 u=amin n=ansible | skipping: [app1]
+2023-09-15 04:22:23,339 p=944795 u=amin n=ansible | TASK [app : Rust Ghost install shell command] ***********************************************************
+2023-09-15 04:22:23,346 p=944795 u=amin n=ansible | skipping: [app1]
+2023-09-15 04:22:23,368 p=944795 u=amin n=ansible | PLAY RECAP **********************************************************************************************
+2023-09-15 04:22:23,368 p=944795 u=amin n=ansible | app1                       : ok=9    changed=1    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+2023-09-15 05:54:12,978 p=18422 u=amin n=ansible | PLAY [firewall] ************************************************************************************************************************************************
+2023-09-15 05:54:12,985 p=18422 u=amin n=ansible | TASK [Gathering Facts] *****************************************************************************************************************************************
+2023-09-15 05:54:14,657 p=18422 u=amin n=ansible | ok: [wall]
+2023-09-15 05:54:14,665 p=18422 u=amin n=ansible | TASK [firewall : Install Nginx] ********************************************************************************************************************************
+2023-09-15 05:54:20,440 p=18422 u=amin n=ansible | failed: [wall] (item=NGNIX_PACKAGE_LIST) => {"ansible_loop_var": "item", "changed": false, "item": "NGNIX_PACKAGE_LIST", "msg": "No package matching 'NGNIX_PACKAGE_LIST' is available"}
+2023-09-15 05:54:20,441 p=18422 u=amin n=ansible | PLAY RECAP *****************************************************************************************************************************************************
+2023-09-15 05:54:20,441 p=18422 u=amin n=ansible | wall                       : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2023-09-15 05:55:21,800 p=23333 u=amin n=ansible | PLAY [firewall] ************************************************************************************************************************************************
+2023-09-15 05:55:21,804 p=23333 u=amin n=ansible | TASK [Gathering Facts] *****************************************************************************************************************************************
+2023-09-15 05:55:23,043 p=23333 u=amin n=ansible | ok: [wall]
+2023-09-15 05:55:23,052 p=23333 u=amin n=ansible | TASK [firewall : Install Nginx] ********************************************************************************************************************************
+2023-09-15 05:55:24,045 p=23333 u=amin n=ansible | failed: [wall] (item=NGNIX_PACKAGE_LIST) => {"ansible_loop_var": "item", "changed": false, "item": "NGNIX_PACKAGE_LIST", "msg": "No package matching 'NGNIX_PACKAGE_LIST' is available"}
+2023-09-15 05:55:24,047 p=23333 u=amin n=ansible | PLAY RECAP *****************************************************************************************************************************************************
+2023-09-15 05:55:24,047 p=23333 u=amin n=ansible | wall                       : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2023-09-15 05:56:23,138 p=27644 u=amin n=ansible | PLAY [firewall] ************************************************************************************************************************************************
+2023-09-15 05:56:23,142 p=27644 u=amin n=ansible | TASK [Gathering Facts] *****************************************************************************************************************************************
+2023-09-15 05:56:24,183 p=27644 u=amin n=ansible | ok: [wall]
+2023-09-15 05:56:24,192 p=27644 u=amin n=ansible | TASK [firewall : Install Nginx] ********************************************************************************************************************************
+2023-09-15 05:56:25,371 p=27644 u=amin n=ansible | failed: [wall] (item= ['ngnix', 'certbot', 'python3-certbot-ngnix']) => {"ansible_loop_var": "item", "changed": false, "item": " ['ngnix', 'certbot', 'python3-certbot-ngnix']", "msg": "No package(s) matching '['ngnix'' available"}
+2023-09-15 05:56:25,373 p=27644 u=amin n=ansible | PLAY RECAP *****************************************************************************************************************************************************
+2023-09-15 05:56:25,373 p=27644 u=amin n=ansible | wall                       : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2023-09-15 05:57:26,662 p=32225 u=amin n=ansible | PLAY [firewall] ************************************************************************************************************************************************
+2023-09-15 05:57:26,666 p=32225 u=amin n=ansible | TASK [Gathering Facts] *****************************************************************************************************************************************
+2023-09-15 05:57:27,865 p=32225 u=amin n=ansible | ok: [wall]
+2023-09-15 05:57:27,874 p=32225 u=amin n=ansible | TASK [firewall : Install Nginx] ********************************************************************************************************************************
+2023-09-15 05:57:29,054 p=32225 u=amin n=ansible | failed: [wall] (item= ['nginx', 'certbot', 'python3-certbot-ngnix']) => {"ansible_loop_var": "item", "changed": false, "item": " ['nginx', 'certbot', 'python3-certbot-ngnix']", "msg": "No package(s) matching '['nginx'' available"}
+2023-09-15 05:57:29,056 p=32225 u=amin n=ansible | PLAY RECAP *****************************************************************************************************************************************************
+2023-09-15 05:57:29,056 p=32225 u=amin n=ansible | wall                       : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2023-09-15 05:58:18,856 p=36238 u=amin n=ansible | PLAY [firewall] ************************************************************************************************************************************************
+2023-09-15 05:58:18,861 p=36238 u=amin n=ansible | TASK [Gathering Facts] *****************************************************************************************************************************************
+2023-09-15 05:58:19,751 p=36238 u=amin n=ansible | ok: [wall]
+2023-09-15 05:58:19,759 p=36238 u=amin n=ansible | TASK [firewall : Install Nginx] ********************************************************************************************************************************
+2023-09-15 05:58:20,954 p=36238 u=amin n=ansible | failed: [wall] (item= ['nginx', 'certbot', 'python3-certbot-ngnix']) => {"ansible_loop_var": "item", "changed": false, "item": " ['nginx', 'certbot', 'python3-certbot-ngnix']", "msg": "No package(s) matching '['nginx'' available"}
+2023-09-15 05:58:20,956 p=36238 u=amin n=ansible | PLAY RECAP *****************************************************************************************************************************************************
+2023-09-15 05:58:20,956 p=36238 u=amin n=ansible | wall                       : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2023-09-15 05:58:32,807 p=37285 u=amin n=ansible | PLAY [firewall] ************************************************************************************************************************************************
+2023-09-15 05:58:32,812 p=37285 u=amin n=ansible | TASK [Gathering Facts] *****************************************************************************************************************************************
+2023-09-15 05:58:33,688 p=37285 u=amin n=ansible | ok: [wall]
+2023-09-15 05:58:33,696 p=37285 u=amin n=ansible | TASK [firewall : Install Nginx] ********************************************************************************************************************************
+2023-09-15 05:58:34,740 p=37285 u=amin n=ansible | failed: [wall] (item=['nginx', 'certbot', 'python3-certbot-ngnix']) => {"ansible_loop_var": "item", "changed": false, "item": ["nginx", "certbot", "python3-certbot-ngnix"], "msg": "No package matching 'python3-certbot-ngnix' is available"}
+2023-09-15 05:58:34,742 p=37285 u=amin n=ansible | PLAY RECAP *****************************************************************************************************************************************************
+2023-09-15 05:58:34,742 p=37285 u=amin n=ansible | wall                       : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2023-09-15 05:58:48,959 p=38526 u=amin n=ansible | PLAY [firewall] ************************************************************************************************************************************************
+2023-09-15 05:58:48,963 p=38526 u=amin n=ansible | TASK [Gathering Facts] *****************************************************************************************************************************************
+2023-09-15 05:58:49,844 p=38526 u=amin n=ansible | ok: [wall]
+2023-09-15 05:58:49,853 p=38526 u=amin n=ansible | TASK [firewall : Install Nginx] ********************************************************************************************************************************
+2023-09-15 05:58:58,091 p=38526 u=amin n=ansible | changed: [wall] => (item=['nginx', 'certbot', 'python3-certbot-nginx'])
+2023-09-15 05:58:58,097 p=38526 u=amin n=ansible | TASK [firewall : Update all packages] **************************************************************************************************************************
+2023-09-15 06:01:47,003 p=38526 u=amin n=ansible | changed: [wall]
+2023-09-15 06:01:47,008 p=38526 u=amin n=ansible | TASK [firewall : Create directories if does not exist] *********************************************************************************************************
+2023-09-15 06:01:47,273 p=38526 u=amin n=ansible | changed: [wall] => (item=/etc/nginx/specific-conf.d/)
+2023-09-15 06:01:47,278 p=38526 u=amin n=ansible | TASK [firewall : Configuring instances] ************************************************************************************************************************
+2023-09-15 06:01:47,299 p=38526 u=amin n=ansible | included: /home/amin/w/redmine-cluster-automation/ansible/roles/firewall/tasks/instances.yml for wall => (item={'domain': 'ghost.aminsaedi.bio', 'email': 'me@ghost.aminsaedi.bio', 'root': '/var/www/ghost'})
+2023-09-15 06:01:47,306 p=38526 u=amin n=ansible | TASK [firewall : nginx config for ghost.aminsaedi.bio] *********************************************************************************************************
+2023-09-15 06:01:47,352 p=38526 u=amin n=ansible | An exception occurred during task execution. To see the full traceback, use -vvv. The error was: If you are using a module and expect the file to exist on the remote, see the remote_src option
+2023-09-15 06:01:47,353 p=38526 u=amin n=ansible | fatal: [wall]: FAILED! => {"changed": false, "msg": "Could not find or access 'etc/nginx/conf.d/nginx.conf.j2'\nSearched in:\n\t/home/amin/w/redmine-cluster-automation/ansible/roles/firewall/templates/etc/nginx/conf.d/nginx.conf.j2\n\t/home/amin/w/redmine-cluster-automation/ansible/roles/firewall/etc/nginx/conf.d/nginx.conf.j2\n\t/home/amin/w/redmine-cluster-automation/ansible/roles/firewall/tasks/templates/etc/nginx/conf.d/nginx.conf.j2\n\t/home/amin/w/redmine-cluster-automation/ansible/roles/firewall/tasks/etc/nginx/conf.d/nginx.conf.j2\n\t/home/amin/w/redmine-cluster-automation/ansible/playbooks/templates/etc/nginx/conf.d/nginx.conf.j2\n\t/home/amin/w/redmine-cluster-automation/ansible/playbooks/etc/nginx/conf.d/nginx.conf.j2 on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2023-09-15 06:01:47,353 p=38526 u=amin n=ansible | PLAY RECAP *****************************************************************************************************************************************************
+2023-09-15 06:01:47,353 p=38526 u=amin n=ansible | wall                       : ok=5    changed=3    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2023-09-15 06:07:16,545 p=91330 u=amin n=ansible | PLAY [firewall] ************************************************************************************************************************************************
+2023-09-15 06:07:16,550 p=91330 u=amin n=ansible | TASK [Gathering Facts] *****************************************************************************************************************************************
+2023-09-15 06:07:17,964 p=91330 u=amin n=ansible | ok: [wall]
+2023-09-15 06:07:17,973 p=91330 u=amin n=ansible | TASK [firewall : Install Nginx] ********************************************************************************************************************************
+2023-09-15 06:07:19,209 p=91330 u=amin n=ansible | ok: [wall] => (item=['nginx', 'certbot', 'python3-certbot-nginx'])
+2023-09-15 06:07:19,214 p=91330 u=amin n=ansible | TASK [firewall : Update all packages] **************************************************************************************************************************
+2023-09-15 06:07:19,872 p=91330 u=amin n=ansible | ok: [wall]
+2023-09-15 06:07:19,877 p=91330 u=amin n=ansible | TASK [firewall : Create directories if does not exist] *********************************************************************************************************
+2023-09-15 06:07:20,132 p=91330 u=amin n=ansible | ok: [wall] => (item=/etc/nginx/specific-conf.d/)
+2023-09-15 06:07:20,137 p=91330 u=amin n=ansible | TASK [firewall : Configuring instances] ************************************************************************************************************************
+2023-09-15 06:07:20,151 p=91330 u=amin n=ansible | included: /home/amin/w/redmine-cluster-automation/ansible/roles/firewall/tasks/instances.yml for wall => (item={'domain': 'ghost.aminsaedi.bio', 'email': 'me@ghost.aminsaedi.bio', 'root': '/var/www/ghost'})
+2023-09-15 06:07:20,158 p=91330 u=amin n=ansible | TASK [firewall : nginx config for ghost.aminsaedi.bio] *********************************************************************************************************
+2023-09-15 06:07:20,202 p=91330 u=amin n=ansible | An exception occurred during task execution. To see the full traceback, use -vvv. The error was: If you are using a module and expect the file to exist on the remote, see the remote_src option
+2023-09-15 06:07:20,202 p=91330 u=amin n=ansible | fatal: [wall]: FAILED! => {"changed": false, "msg": "Could not find or access 'etc/nginx/conf.d/nginx.conf.j2'\nSearched in:\n\t/home/amin/w/redmine-cluster-automation/ansible/roles/firewall/templates/etc/nginx/conf.d/nginx.conf.j2\n\t/home/amin/w/redmine-cluster-automation/ansible/roles/firewall/etc/nginx/conf.d/nginx.conf.j2\n\t/home/amin/w/redmine-cluster-automation/ansible/roles/firewall/tasks/templates/etc/nginx/conf.d/nginx.conf.j2\n\t/home/amin/w/redmine-cluster-automation/ansible/roles/firewall/tasks/etc/nginx/conf.d/nginx.conf.j2\n\t/home/amin/w/redmine-cluster-automation/ansible/playbooks/templates/etc/nginx/conf.d/nginx.conf.j2\n\t/home/amin/w/redmine-cluster-automation/ansible/playbooks/etc/nginx/conf.d/nginx.conf.j2 on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2023-09-15 06:07:20,203 p=91330 u=amin n=ansible | PLAY RECAP *****************************************************************************************************************************************************
+2023-09-15 06:07:20,203 p=91330 u=amin n=ansible | wall                       : ok=5    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2023-09-15 06:09:35,498 p=108155 u=amin n=ansible | PLAY [firewall] ************************************************************************************************************************************************
+2023-09-15 06:09:35,503 p=108155 u=amin n=ansible | TASK [Gathering Facts] *****************************************************************************************************************************************
+2023-09-15 06:09:36,838 p=108155 u=amin n=ansible | ok: [wall]
+2023-09-15 06:09:36,849 p=108155 u=amin n=ansible | TASK [firewall : Install Nginx] ********************************************************************************************************************************
+2023-09-15 06:09:38,230 p=108155 u=amin n=ansible | ok: [wall] => (item=['nginx', 'certbot', 'python3-certbot-nginx'])
+2023-09-15 06:09:38,236 p=108155 u=amin n=ansible | TASK [firewall : Update all packages] **************************************************************************************************************************
+2023-09-15 06:09:38,917 p=108155 u=amin n=ansible | ok: [wall]
+2023-09-15 06:09:38,920 p=108155 u=amin n=ansible | TASK [firewall : Create directories if does not exist] *********************************************************************************************************
+2023-09-15 06:09:39,204 p=108155 u=amin n=ansible | ok: [wall] => (item=/etc/nginx/specific-conf.d/)
+2023-09-15 06:09:39,209 p=108155 u=amin n=ansible | TASK [firewall : Configuring instances] ************************************************************************************************************************
+2023-09-15 06:09:39,224 p=108155 u=amin n=ansible | included: /home/amin/w/redmine-cluster-automation/ansible/roles/firewall/tasks/instances.yml for wall => (item={'domain': 'ghost.aminsaedi.bio', 'email': 'me@ghost.aminsaedi.bio', 'root': '/var/www/ghost'})
+2023-09-15 06:09:39,228 p=108155 u=amin n=ansible | TASK [firewall : nginx config for ghost.aminsaedi.bio] *********************************************************************************************************
+2023-09-15 06:09:39,721 p=108155 u=amin n=ansible | changed: [wall]
+2023-09-15 06:09:39,734 p=108155 u=amin n=ansible | RUNNING HANDLER [firewall : reload nginx] **********************************************************************************************************************
+2023-09-15 06:09:40,320 p=108155 u=amin n=ansible | fatal: [wall]: FAILED! => {"changed": false, "msg": "Could not find the requested service ngnix: host"}
+2023-09-15 06:09:40,320 p=108155 u=amin n=ansible | PLAY RECAP *****************************************************************************************************************************************************
+2023-09-15 06:09:40,320 p=108155 u=amin n=ansible | wall                       : ok=6    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2023-09-15 06:10:02,829 p=111548 u=amin n=ansible | PLAY [firewall] ************************************************************************************************************************************************
+2023-09-15 06:10:02,837 p=111548 u=amin n=ansible | TASK [Gathering Facts] *****************************************************************************************************************************************
+2023-09-15 06:10:03,827 p=111548 u=amin n=ansible | ok: [wall]
+2023-09-15 06:10:03,836 p=111548 u=amin n=ansible | TASK [firewall : Install Nginx] ********************************************************************************************************************************
+2023-09-15 06:10:05,135 p=111548 u=amin n=ansible | ok: [wall] => (item=['nginx', 'certbot', 'python3-certbot-nginx'])
+2023-09-15 06:10:05,141 p=111548 u=amin n=ansible | TASK [firewall : Update all packages] **************************************************************************************************************************
+2023-09-15 06:10:05,836 p=111548 u=amin n=ansible | ok: [wall]
+2023-09-15 06:10:05,841 p=111548 u=amin n=ansible | TASK [firewall : Create directories if does not exist] *********************************************************************************************************
+2023-09-15 06:10:06,085 p=111548 u=amin n=ansible | ok: [wall] => (item=/etc/nginx/specific-conf.d/)
+2023-09-15 06:10:06,089 p=111548 u=amin n=ansible | TASK [firewall : Configuring instances] ************************************************************************************************************************
+2023-09-15 06:10:06,101 p=111548 u=amin n=ansible | included: /home/amin/w/redmine-cluster-automation/ansible/roles/firewall/tasks/instances.yml for wall => (item={'domain': 'ghost.aminsaedi.bio', 'email': 'me@ghost.aminsaedi.bio', 'root': '/var/www/ghost'})
+2023-09-15 06:10:06,105 p=111548 u=amin n=ansible | TASK [firewall : nginx config for ghost.aminsaedi.bio] *********************************************************************************************************
+2023-09-15 06:10:06,511 p=111548 u=amin n=ansible | ok: [wall]
+2023-09-15 06:10:06,524 p=111548 u=amin n=ansible | PLAY RECAP *****************************************************************************************************************************************************
+2023-09-15 06:10:06,524 p=111548 u=amin n=ansible | wall                       : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2023-09-15 06:22:27,902 p=200041 u=amin n=ansible | PLAY [firewall] ************************************************************************************************************************************************
+2023-09-15 06:22:27,907 p=200041 u=amin n=ansible | TASK [Gathering Facts] *****************************************************************************************************************************************
+2023-09-15 06:22:29,198 p=200041 u=amin n=ansible | ok: [wall]
+2023-09-15 06:22:29,207 p=200041 u=amin n=ansible | TASK [firewall : Add Nginx Repository] *************************************************************************************************************************
+2023-09-15 06:23:07,729 p=200041 u=amin n=ansible | fatal: [wall]: FAILED! => {"changed": false, "msg": "Failed to update apt cache: E:The repository 'http://ppa.launchpad.net/nginx/stable/ubuntu jammy Release' does not have a Release file."}
+2023-09-15 06:23:07,730 p=200041 u=amin n=ansible | PLAY RECAP *****************************************************************************************************************************************************
+2023-09-15 06:23:07,730 p=200041 u=amin n=ansible | wall                       : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2023-09-15 06:25:07,603 p=218292 u=amin n=ansible | PLAY [firewall] ************************************************************************************************************************************************
+2023-09-15 06:25:07,608 p=218292 u=amin n=ansible | TASK [Gathering Facts] *****************************************************************************************************************************************
+2023-09-15 06:25:08,988 p=218292 u=amin n=ansible | ok: [wall]
+2023-09-15 06:25:08,996 p=218292 u=amin n=ansible | TASK [firewall : Install Nginx] ********************************************************************************************************************************
+2023-09-15 06:25:11,394 p=218292 u=amin n=ansible | ok: [wall] => (item=['nginx', 'certbot', 'python3-certbot-nginx'])
+2023-09-15 06:25:11,399 p=218292 u=amin n=ansible | TASK [firewall : Update all packages] **************************************************************************************************************************
+2023-09-15 06:25:12,056 p=218292 u=amin n=ansible | ok: [wall]
+2023-09-15 06:25:12,059 p=218292 u=amin n=ansible | TASK [firewall : Create directories if does not exist] *********************************************************************************************************
+2023-09-15 06:25:12,331 p=218292 u=amin n=ansible | ok: [wall] => (item=/etc/nginx/specific-conf.d/)
+2023-09-15 06:25:12,336 p=218292 u=amin n=ansible | TASK [firewall : Remove default nginx config] ******************************************************************************************************************
+2023-09-15 06:25:12,515 p=218292 u=amin n=ansible | changed: [wall]
+2023-09-15 06:25:12,520 p=218292 u=amin n=ansible | TASK [firewall : Configuring instances] ************************************************************************************************************************
+2023-09-15 06:25:12,534 p=218292 u=amin n=ansible | included: /home/amin/w/redmine-cluster-automation/ansible/roles/firewall/tasks/instances.yml for wall => (item={'domain': 'ghost.aminsaedi.bio', 'email': 'me@ghost.aminsaedi.bio', 'root': '/var/www/ghost'})
+2023-09-15 06:25:12,541 p=218292 u=amin n=ansible | TASK [firewall : nginx config for ghost.aminsaedi.bio] *********************************************************************************************************
+2023-09-15 06:25:12,936 p=218292 u=amin n=ansible | ok: [wall]
+2023-09-15 06:25:12,941 p=218292 u=amin n=ansible | TASK [firewall : Enable ufw access for Nginx Full] *************************************************************************************************************
+2023-09-15 06:25:13,473 p=218292 u=amin n=ansible | changed: [wall]
+2023-09-15 06:25:13,490 p=218292 u=amin n=ansible | PLAY RECAP *****************************************************************************************************************************************************
+2023-09-15 06:25:13,490 p=218292 u=amin n=ansible | wall                       : ok=8    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   

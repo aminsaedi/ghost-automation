@@ -1,0 +1,42 @@
+---
+
+- name: "Install Nginx"
+  apt:
+    name: "{{ item }}"
+    state: "present"
+    update_cache: true
+  loop:
+    - "{{ NGNIX_PACKAGE_LIST }}"
+
+
+- name: "Update all packages"
+  apt:
+    name: "*"
+    state: "latest"
+
+
+- name: "Create directories if does not exist"
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+  with_items:
+    - /etc/nginx/specific-conf.d/
+    # - /etc/systemd/system/nginx.service.d/
+
+- name: "Remove default nginx config"
+  file:
+    name: /etc/nginx/sites-enabled/default
+    state: absent
+
+
+- name: "Configuring instances"
+  include_tasks: instances.yml
+  loop: "{{ NGNIX_INSTANCES }}"
+  loop_control:
+    loop_var: instance
+
+- name: Enable ufw access for Nginx Full
+  ufw:
+    rule: allow
+    name: "Nginx Full"

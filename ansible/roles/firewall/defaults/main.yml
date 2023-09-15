@@ -1,0 +1,11 @@
+---
+
+NGNIX_PACKAGE_LIST:
+  - nginx
+  - certbot
+  - python3-certbot-nginx
+
+NGNIX_INSTANCES:
+  - domain: "{{ MAIN_DOMAIN }}"
+    email: "me@{{ MAIN_DOMAIN }}"
+    root: /var/www/ghost

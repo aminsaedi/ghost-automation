@@ -41,6 +41,11 @@
     state: "latest"
     global: true
 
+- name: "Check if ghost site is already installed"
+  stat:
+    path: "/var/www/{{ SITE_NAME }}/config.production.json"
+  register: ghost_config
+
 
 - name: "Create direcrory for files hosting"
   file:
@@ -49,9 +54,11 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0775'
+  when: not ghost_config.stat.exists
 
 - name: "Rust Ghost install shell command"
   become: no
   shell: "ghost install --no-prompt --ip 0.0.0.0 --url http://0.0.0.0:2368 --db mysql --dbhost {{ db_fqdn }} --dbuser ghost --dbpass Pass123@ --dbname ghost --no-setup-nginx --no-setup-ssl"
   args:
     chdir: "/var/www/{{ SITE_NAME }}"
+  when: not ghost_config.stat.exists
