@@ -3,3 +3,5 @@ REQUIRED_PACKGES_BEFORE_INSTALLING_NODEJS:
  - ca-certificates
  - gnupg
 SITE_NAME: ghost
+
+SWAP_FILE_SIZE: 2G

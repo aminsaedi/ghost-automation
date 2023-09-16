@@ -1,5 +1,15 @@
 ---
 
+
+- include_tasks: "swap.yml"
+
+- name: "Set DNS servers"
+  copy:
+    dest: /etc/resolv.conf
+    content: |
+      nameserver 1.1.1.1
+
+
 - name: "Install required packages for install NodeJS"
   apt:
     name: "{{ item }}"
@@ -46,6 +56,14 @@
     path: "/var/www/{{ SITE_NAME }}/config.production.json"
   register: ghost_config
 
+- name: Allow 'sudo' group to have passwordless sudo
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%sudo'
+    line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'
+
 - name: "Create installer user"
   user:
     name: "ghost_installer"
@@ -54,6 +72,8 @@
     create_home: yes
     groups: sudo
     append: yes
+
+
 
 
 - name: "Create direcrory for files hosting"
@@ -68,7 +88,7 @@
 - name: "Rust Ghost install shell command"
   become: true
   become_user: ghost_installer
-  shell: "ghost install --no-prompt --ip 0.0.0.0 --url http://0.0.0.0:2368 --db mysql --dbhost {{ db_fqdn }} --dbuser ghost --dbpass Pass123@ --dbname ghost --no-setup-nginx --no-setup-ssl"
+  shell: "ghost install --no-prompt --ip 0.0.0.0 --url http://{{ root_fqdn }} --db mysql --dbhost {{ db_fqdn }} --dbuser ghost --dbpass Pass123@ --dbname ghost --no-setup-nginx --no-setup-ssl"
   args:
     chdir: "/var/www/{{ SITE_NAME }}"
   when: not ghost_config.stat.exists

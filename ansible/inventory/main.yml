@@ -14,7 +14,7 @@ application:
 firewall:
   hosts:
     wall:
-      ansible_host: "{{ wall_fqdn }}"
+      ansible_host: "{{ firewall_fqdn }}"
 
 database:
   hosts:

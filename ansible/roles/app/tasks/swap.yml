@@ -1,0 +1,29 @@
+---
+
+- name: "Check if swap file is already created"
+  stat:
+    path: "/swapfile"
+  register: swap_file
+
+- name: "Create swap file"
+  command: "fallocate -l {{ SWAP_FILE_SIZE }} /swapfile"
+  when: not swap_file.stat.exists
+
+- name: "Set swap file permissions"
+  command: "chmod 600 /swapfile"
+  when: not swap_file.stat.exists
+
+- name: "Set swap file as swap"
+  command: "mkswap /swapfile"
+  when: not swap_file.stat.exists
+
+- name: "Turn on swap"
+  command: "swapon /swapfile"
+  when: not swap_file.stat.exists
+
+- name: "Add swap file to fstab"
+  lineinfile:
+    path: /etc/fstab
+    line: "/swapfile swap swap defaults 0 0"
+    create: yes
+  when: not swap_file.stat.exists

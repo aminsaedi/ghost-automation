@@ -27,7 +27,7 @@ resource "cloudflare_record" "root_domain" {
   name = "ghost"
   value = digitalocean_droplet.ghost-firewall.ipv4_address
   type = "A"
-  proxied = true
+  proxied = false
 }
 
 
