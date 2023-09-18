@@ -1,31 +1,39 @@
 ---
-- name: "Install required packages"
+- name: Install the latest required packages
   apt:
     name: "{{ item }}"
     state: present
     update_cache: yes
   loop:
     - "{{ MARIADB_PKGS_LIST }}"
+  tags: 
+    - pkg
 
-
-- name: "Make sure MariaDB is running"
+- name: Start and enable MariaDB service
   systemd:
     state: started
     enabled: true
     name: mariadb
 
-- name: check if config file exist
+- name: Check if .my.cnf file exist
   stat:
     path: /root/.my.cnf
   register: config_file
 
-- name: Generate mysql root pass
+- name: Generate mysql root password
   set_fact:
     MARIADB_ROOT_PASS: "{{ lookup('ansible.builtin.password', '/dev/null chars=ascii_uppercase,ascii_lowercase,digits length=16') }}"
-    # MARIADB_ROOT_PASS: "Pass123@"
-    MARIADB_USER_PASS: "Pass123@"
-  # when: not config_file.stat.exists
+  when: not config_file.stat.exists
 
+- name: Removes anonymous users
+  mysql_user:
+    name: ''
+    host: "{{ item }}" 
+    state: absent
+    login_unix_socket: /run/mysqld/mysqld.sock
+  with_items:
+    - 127.0.0.1
+    - localhost
 
 - name: Update mysql server configs
   template:
@@ -44,11 +52,33 @@
     password: "{{ MARIADB_ROOT_PASS }}"
   notify:
     restart mariadb
+  when: not config_file.stat.exists
 
-- name: Create ghost database
-  mysql_db:
-    name: ghost
-    state: present
+- name: mysql .my.cnf file
+  template:
+    src: root/my.cnf.j2
+    dest: /root/.my.cnf
+    owner: root
+    group: root
+    mode: '0600'
+  when: not config_file.stat.exists
+
+# MariaDB ghost user configuration
+
+- name: Check if .my.cnf-ghost file exist
+  stat:
+    path: /root/.my.cnf-ghost
+  register: user_config_file
+
+- name: Generate mysql user password
+  set_fact:
+    MARIADB_USER_PASS: "{{ lookup('ansible.builtin.password', '/dev/null chars=ascii_uppercase,ascii_lowercase,digits length=16') }}"
+  when: not user_config_file.stat.exists
+
+- name: Set mysql user password fact if .my.cnf-ghost file exist
+  set_fact:
+    MARIADB_USER_PASS: "{{ lookup('file', '/root/.my.cnf-ghost') }}"
+  when: user_config_file.stat.exists
 
 - name: Create database user ghost
   mysql_user:
@@ -58,3 +88,20 @@
     update_password: on_create
     priv: "ghost.*:ALL,GRANT"
     state: present
+  when: not user_config_file.stat.exists
+
+- name: Create ghost database
+  mysql_db:
+    name: ghost
+    state: present
+  when: not user_config_file.stat.exists
+
+
+- name: mysql .my.cnf-user file
+  template:
+    src: root/my.cnf-ghost.j2
+    dest: /root/.my.cnf-ghost
+    owner: root
+    group: root
+    mode: '0600'
+  when: not user_config_file.stat.exists
