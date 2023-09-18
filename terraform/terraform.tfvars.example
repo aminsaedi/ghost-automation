@@ -1,0 +1,3 @@
+digitalocean_token = "DIGITAL_OCEAN_API_KEY"
+cloudflare_zone_id = "CLOUDFLARE_ZONE_ID"
+cloudflare_token = "CLOUDFLARE_API_KEY"
