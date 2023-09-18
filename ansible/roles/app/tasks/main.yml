@@ -90,7 +90,7 @@
 - name: "Rust Ghost install shell command"
   become: true
   become_user: ghost_installer
-  shell: "ghost install --no-prompt --ip 0.0.0.0 --url http://{{ root_fqdn }} --db mysql --dbhost {{ db_fqdn }} --dbuser ghost --dbpass Pass123@ --dbname ghost --no-setup-nginx --no-setup-ssl"
+  shell: "ghost install --no-prompt --ip 0.0.0.0 --url https://{{ root_fqdn }} --db mysql --dbhost {{ db_fqdn }} --dbuser ghost --dbpass Pass123@ --dbname ghost --no-setup-nginx --no-setup-ssl"
   args:
     chdir: "/var/www/{{ SITE_NAME }}"
   when: not ghost_config.stat.exists
