@@ -1,3 +1,11 @@
+- name: "Install Nginx"
+  apt:
+    name: "{{ item }}"
+    state: "present"
+    update_cache: true
+  loop:
+    - nginx
+
 - name: Create directories for letsencrypt
   file:
     path: /var/www/letsencrypt
