@@ -39,22 +39,24 @@
     repo: "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_16.x nodistro main"
     state: present
 
+- name: "Check if ghost site is already installed"
+  stat:
+    path: "/var/www/{{ SITE_NAME }}/config.production.json"
+  register: ghost_config
+
 - name: "Install NodeJS"
   apt:
     name: nodejs
     state: present
     update_cache: yes
+  when: not ghost_config.stat.exists
 
 - name: "Install Ghost Npm modules"
   community.general.npm:
     name: "ghost-cli"
     state: "latest"
     global: true
-
-- name: "Check if ghost site is already installed"
-  stat:
-    path: "/var/www/{{ SITE_NAME }}/config.production.json"
-  register: ghost_config
+  when: not ghost_config.stat.exists
 
 - name: Allow 'sudo' group to have passwordless sudo
   lineinfile:
@@ -63,6 +65,7 @@
     regexp: '^%sudo'
     line: '%sudo ALL=(ALL) NOPASSWD: ALL'
     validate: 'visudo -cf %s'
+  when: not ghost_config.stat.exists
 
 - name: "Create installer user"
   user:
@@ -72,8 +75,7 @@
     create_home: yes
     groups: sudo
     append: yes
-
-
+  when: not ghost_config.stat.exists
 
 
 - name: "Create direcrory for files hosting"
@@ -88,7 +90,7 @@
 - name: "Rust Ghost install shell command"
   become: true
   become_user: ghost_installer
-  shell: "ghost install --no-prompt --ip 0.0.0.0 --url http://{{ root_fqdn }} --db mysql --dbhost {{ db_fqdn }} --dbuser ghost --dbpass Pass123@ --dbname ghost --no-setup-nginx --no-setup-ssl"
+  shell: "ghost install --no-prompt --ip 0.0.0.0 --url https://{{ root_fqdn }} --db mysql --dbhost {{ db_fqdn }} --dbuser ghost --dbpass Pass123@ --dbname ghost --no-setup-nginx --no-setup-ssl"
   args:
     chdir: "/var/www/{{ SITE_NAME }}"
   when: not ghost_config.stat.exists

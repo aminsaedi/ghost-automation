@@ -1,0 +1,9 @@
+certbot_admin_email: admin@{{ root_fqdn }}
+certbot_create_if_missing: true
+certbot_create_standalone_stop_services: []
+certbot_create_method: webroot
+certbot_certs:
+  - domains:
+      - "{{ root_fqdn }}"
+    email: "admin@{{ root_fqdn }}"
+    webroot: /var/www/letsencrypt

@@ -1,0 +1,17 @@
+- name: Create directories for letsencrypt
+  file:
+    path: /var/www/letsencrypt
+    state: directory
+    mode: '0755'
+
+- name: Configure nginx for letsencrypt
+  template:
+    src: etc/nginx/conf.d/nginx.conf.j2
+    dest: /etc/nginx/conf.d/{{ root_fqdn }}.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    reload nginx
+
+

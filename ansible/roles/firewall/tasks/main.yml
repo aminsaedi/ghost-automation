@@ -30,13 +30,15 @@
     state: absent
 
 
-- name: "Configuring instances"
-  include_tasks: instances.yml
-  loop: "{{ NGNIX_INSTANCES }}"
-  loop_control:
-    loop_var: instance
 
 - name: Enable ufw access for Nginx Full
   ufw:
     rule: allow
     name: "Nginx Full"
+
+
+- name: "Configuring instances"
+  include_tasks: instances.yml
+  loop: "{{ NGNIX_INSTANCES }}"
+  loop_control:
+    loop_var: instance

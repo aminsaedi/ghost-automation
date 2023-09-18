@@ -1,7 +1,0 @@
-app_fqdn : "app.ghost.aminsaedi.bio"
-app_ip : "174.138.42.169"
-db_fqdn : "db.ghost.aminsaedi.bio"
-db_ip : "174.138.34.209"
-firewall_fqdn : "firewall.ghost.aminsaedi.bio"
-firewall_ip : "164.92.210.255"
-root_fqdn : "ghost.aminsaedi.bio"

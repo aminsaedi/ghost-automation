@@ -2,8 +2,7 @@
 
 NGNIX_PACKAGE_LIST:
   - nginx
-  - certbot
-  - python3-certbot-nginx
+  - cron
 
 NGNIX_INSTANCES:
   - domain: "{{ root_fqdn }}"

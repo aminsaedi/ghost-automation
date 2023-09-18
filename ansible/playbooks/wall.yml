@@ -2,5 +2,7 @@
 
 - hosts: firewall
   roles:
+    - role: ssl
+    - role: geerlingguy.certbot
     - role: firewall
 
