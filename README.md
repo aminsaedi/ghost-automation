@@ -9,7 +9,7 @@ Before getting started, make sure you have the following prerequisites installed
 - [Terraform](https://www.terraform.io/downloads.html)
 - [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 
-## Configuring the .env File
+## Configuring the env file
 
 The `terraform.tfvars.example` file contains configuration variables that are used to setup droplets and your dns records. To configure the file, follow these steps:
 
